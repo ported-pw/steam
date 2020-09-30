@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto2',
   serialized_options=_b('\220\001\001'),
-  serialized_pb=_b('\n steammessages_depotbuilder.proto\x1a steammessages_unified_base.proto\"w\n&CContentBuilder_InitDepotBuild_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x0f\n\x07\x64\x65potid\x18\x02 \x01(\r\x12\x17\n\x0fworkshop_itemid\x18\x03 \x01(\x04\x12\x14\n\x0c\x66or_local_cs\x18\x04 \x01(\x08\"\xb1\x02\n\'CContentBuilder_InitDepotBuild_Response\x12\x1b\n\x13\x62\x61seline_manifestid\x18\x01 \x01(\x04\x12\x12\n\nchunk_size\x18\x02 \x01(\r\x12\x0f\n\x07\x61\x65s_key\x18\x03 \x01(\x0c\x12\x0f\n\x07rsa_key\x18\x04 \x01(\x0c\x12\x10\n\x08url_host\x18\x05 \x01(\t\x12 \n\x18offset_detection_enabled\x18\x06 \x01(\x08\x12(\n offset_detection_min_clean_chunk\x18\x07 \x01(\r\x12)\n!offset_detection_blast_radius_pre\x18\x08 \x01(\r\x12*\n\"offset_detection_blast_radius_post\x18\t \x01(\r\"\xad\x01\n(CContentBuilder_StartDepotUpload_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x0f\n\x07\x64\x65potid\x18\x02 \x01(\r\x12\x17\n\x0fworkshop_itemid\x18\x03 \x01(\x04\x12\x14\n\x0c\x66or_local_cs\x18\x04 \x01(\x08\x12\x1b\n\x13\x62\x61seline_manifestid\x18\x05 \x01(\x04\x12\x15\n\rmanifest_size\x18\x06 \x01(\r\"G\n)CContentBuilder_StartDepotUpload_Response\x12\x1a\n\x12\x64\x65pot_build_handle\x18\x01 \x01(\x04\"Z\n-CContentBuilder_GetMissingDepotChunks_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x1a\n\x12\x64\x65pot_build_handle\x18\x02 \x01(\x04\"\xd2\x01\n.CContentBuilder_GetMissingDepotChunks_Response\x12N\n\x0emissing_chunks\x18\x01 \x03(\x0b\x32\x36.CContentBuilder_GetMissingDepotChunks_Response.Chunks\x12\x1c\n\x14total_missing_chunks\x18\x02 \x01(\r\x12\x1b\n\x13total_missing_bytes\x18\x03 \x01(\x04\x1a\x15\n\x06\x43hunks\x12\x0b\n\x03sha\x18\x01 \x01(\x0c\"V\n)CContentBuilder_FinishDepotUpload_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x1a\n\x12\x64\x65pot_build_handle\x18\x02 \x01(\x04\"U\n*CContentBuilder_FinishDepotUpload_Response\x12\x12\n\nmanifestid\x18\x01 \x01(\x04\x12\x13\n\x0bprev_reused\x18\x02 \x01(\x08\"\xd9\x01\n&CContentBuilder_CommitAppBuild_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12G\n\x0f\x64\x65pot_manifests\x18\x02 \x03(\x0b\x32..CContentBuilder_CommitAppBuild_Request.Depots\x12\x13\n\x0b\x62uild_notes\x18\x04 \x01(\t\x12\x13\n\x0blive_branch\x18\x05 \x01(\t\x1a-\n\x06\x44\x65pots\x12\x0f\n\x07\x64\x65potid\x18\x01 \x01(\r\x12\x12\n\nmanifestid\x18\x02 \x01(\x04\":\n\'CContentBuilder_CommitAppBuild_Response\x12\x0f\n\x07\x62uildid\x18\x01 \x01(\r\"c\n)CContentBuilder_SignInstallScript_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x0f\n\x07\x64\x65potid\x18\x02 \x01(\r\x12\x16\n\x0einstall_script\x18\x03 \x01(\t\"K\n*CContentBuilder_SignInstallScript_Response\x12\x1d\n\x15signed_install_script\x18\x01 \x01(\t2\x92\x08\n\x0e\x43ontentBuilder\x12\x98\x01\n\x0eInitDepotBuild\x12\'.CContentBuilder_InitDepotBuild_Request\x1a(.CContentBuilder_InitDepotBuild_Response\"3\x82\xb5\x18/Get inital parameters to start building a depot\x12\x9e\x01\n\x10StartDepotUpload\x12).CContentBuilder_StartDepotUpload_Request\x1a*.CContentBuilder_StartDepotUpload_Response\"3\x82\xb5\x18/Start uploading manifest and chunks for a depot\x12\xa9\x01\n\x15GetMissingDepotChunks\x12..CContentBuilder_GetMissingDepotChunks_Request\x1a/.CContentBuilder_GetMissingDepotChunks_Response\"/\x82\xb5\x18+Get list of missing chunks for depot upload\x12\xb1\x01\n\x11\x46inishDepotUpload\x12*.CContentBuilder_FinishDepotUpload_Request\x1a+.CContentBuilder_FinishDepotUpload_Response\"C\x82\xb5\x18?Commit a depot build after manifest and all chunks are uploaded\x12\xa7\x01\n\x0e\x43ommitAppBuild\x12\'.CContentBuilder_CommitAppBuild_Request\x1a(.CContentBuilder_CommitAppBuild_Response\"B\x82\xb5\x18>Combine previous depot uploads into an app build and commit it\x12\x88\x01\n\x11SignInstallScript\x12*.CContentBuilder_SignInstallScript_Request\x1a+.CContentBuilder_SignInstallScript_Response\"\x1a\x82\xb5\x18\x16Sign an install script\x1a/\x82\xb5\x18+Interface to build and upload depot contentB\x03\x90\x01\x01')
+  serialized_pb=_b('\n steammessages_depotbuilder.proto\x1a steammessages_unified_base.proto\"w\n&CContentBuilder_InitDepotBuild_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x0f\n\x07\x64\x65potid\x18\x02 \x01(\r\x12\x17\n\x0fworkshop_itemid\x18\x03 \x01(\x04\x12\x14\n\x0c\x66or_local_cs\x18\x04 \x01(\x08\"\x88\x03\n\'CContentBuilder_InitDepotBuild_Response\x12\x1b\n\x13\x62\x61seline_manifestid\x18\x01 \x01(\x04\x12\x12\n\nchunk_size\x18\x02 \x01(\r\x12\x0f\n\x07\x61\x65s_key\x18\x03 \x01(\x0c\x12\x0f\n\x07rsa_key\x18\x04 \x01(\x0c\x12\x10\n\x08url_host\x18\x05 \x01(\t\x12 \n\x18offset_detection_enabled\x18\x06 \x01(\x08\x12(\n offset_detection_min_clean_chunk\x18\x07 \x01(\r\x12)\n!offset_detection_blast_radius_pre\x18\x08 \x01(\r\x12*\n\"offset_detection_blast_radius_post\x18\t \x01(\r\x12)\n!offset_detection_max_distance_pre\x18\n \x01(\r\x12*\n\"offset_detection_max_distance_post\x18\x0b \x01(\r\"\xad\x01\n(CContentBuilder_StartDepotUpload_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x0f\n\x07\x64\x65potid\x18\x02 \x01(\r\x12\x17\n\x0fworkshop_itemid\x18\x03 \x01(\x04\x12\x14\n\x0c\x66or_local_cs\x18\x04 \x01(\x08\x12\x1b\n\x13\x62\x61seline_manifestid\x18\x05 \x01(\x04\x12\x15\n\rmanifest_size\x18\x06 \x01(\r\"G\n)CContentBuilder_StartDepotUpload_Response\x12\x1a\n\x12\x64\x65pot_build_handle\x18\x01 \x01(\x04\"Z\n-CContentBuilder_GetMissingDepotChunks_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x1a\n\x12\x64\x65pot_build_handle\x18\x02 \x01(\x04\"\xd2\x01\n.CContentBuilder_GetMissingDepotChunks_Response\x12N\n\x0emissing_chunks\x18\x01 \x03(\x0b\x32\x36.CContentBuilder_GetMissingDepotChunks_Response.Chunks\x12\x1c\n\x14total_missing_chunks\x18\x02 \x01(\r\x12\x1b\n\x13total_missing_bytes\x18\x03 \x01(\x04\x1a\x15\n\x06\x43hunks\x12\x0b\n\x03sha\x18\x01 \x01(\x0c\"V\n)CContentBuilder_FinishDepotUpload_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x1a\n\x12\x64\x65pot_build_handle\x18\x02 \x01(\x04\"U\n*CContentBuilder_FinishDepotUpload_Response\x12\x12\n\nmanifestid\x18\x01 \x01(\x04\x12\x13\n\x0bprev_reused\x18\x02 \x01(\x08\"\xd9\x01\n&CContentBuilder_CommitAppBuild_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12G\n\x0f\x64\x65pot_manifests\x18\x02 \x03(\x0b\x32..CContentBuilder_CommitAppBuild_Request.Depots\x12\x13\n\x0b\x62uild_notes\x18\x04 \x01(\t\x12\x13\n\x0blive_branch\x18\x05 \x01(\t\x1a-\n\x06\x44\x65pots\x12\x0f\n\x07\x64\x65potid\x18\x01 \x01(\r\x12\x12\n\nmanifestid\x18\x02 \x01(\x04\":\n\'CContentBuilder_CommitAppBuild_Response\x12\x0f\n\x07\x62uildid\x18\x01 \x01(\r\"c\n)CContentBuilder_SignInstallScript_Request\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x0f\n\x07\x64\x65potid\x18\x02 \x01(\r\x12\x16\n\x0einstall_script\x18\x03 \x01(\t\"K\n*CContentBuilder_SignInstallScript_Response\x12\x1d\n\x15signed_install_script\x18\x01 \x01(\t2\x92\x08\n\x0e\x43ontentBuilder\x12\x98\x01\n\x0eInitDepotBuild\x12\'.CContentBuilder_InitDepotBuild_Request\x1a(.CContentBuilder_InitDepotBuild_Response\"3\x82\xb5\x18/Get inital parameters to start building a depot\x12\x9e\x01\n\x10StartDepotUpload\x12).CContentBuilder_StartDepotUpload_Request\x1a*.CContentBuilder_StartDepotUpload_Response\"3\x82\xb5\x18/Start uploading manifest and chunks for a depot\x12\xa9\x01\n\x15GetMissingDepotChunks\x12..CContentBuilder_GetMissingDepotChunks_Request\x1a/.CContentBuilder_GetMissingDepotChunks_Response\"/\x82\xb5\x18+Get list of missing chunks for depot upload\x12\xb1\x01\n\x11\x46inishDepotUpload\x12*.CContentBuilder_FinishDepotUpload_Request\x1a+.CContentBuilder_FinishDepotUpload_Response\"C\x82\xb5\x18?Commit a depot build after manifest and all chunks are uploaded\x12\xa7\x01\n\x0e\x43ommitAppBuild\x12\'.CContentBuilder_CommitAppBuild_Request\x1a(.CContentBuilder_CommitAppBuild_Response\"B\x82\xb5\x18>Combine previous depot uploads into an app build and commit it\x12\x88\x01\n\x11SignInstallScript\x12*.CContentBuilder_SignInstallScript_Request\x1a+.CContentBuilder_SignInstallScript_Response\"\x1a\x82\xb5\x18\x16Sign an install script\x1a/\x82\xb5\x18+Interface to build and upload depot contentB\x03\x90\x01\x01')
   ,
   dependencies=[steammessages__unified__base__pb2.DESCRIPTOR,])
 
@@ -152,6 +152,20 @@ _CCONTENTBUILDER_INITDEPOTBUILD_RESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='offset_detection_max_distance_pre', full_name='CContentBuilder_InitDepotBuild_Response.offset_detection_max_distance_pre', index=9,
+      number=10, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='offset_detection_max_distance_post', full_name='CContentBuilder_InitDepotBuild_Response.offset_detection_max_distance_post', index=10,
+      number=11, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -165,7 +179,7 @@ _CCONTENTBUILDER_INITDEPOTBUILD_RESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=192,
-  serialized_end=497,
+  serialized_end=584,
 )
 
 
@@ -230,8 +244,8 @@ _CCONTENTBUILDER_STARTDEPOTUPLOAD_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=500,
-  serialized_end=673,
+  serialized_start=587,
+  serialized_end=760,
 )
 
 
@@ -261,8 +275,8 @@ _CCONTENTBUILDER_STARTDEPOTUPLOAD_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=675,
-  serialized_end=746,
+  serialized_start=762,
+  serialized_end=833,
 )
 
 
@@ -299,8 +313,8 @@ _CCONTENTBUILDER_GETMISSINGDEPOTCHUNKS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=748,
-  serialized_end=838,
+  serialized_start=835,
+  serialized_end=925,
 )
 
 
@@ -330,8 +344,8 @@ _CCONTENTBUILDER_GETMISSINGDEPOTCHUNKS_RESPONSE_CHUNKS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1030,
-  serialized_end=1051,
+  serialized_start=1117,
+  serialized_end=1138,
 )
 
 _CCONTENTBUILDER_GETMISSINGDEPOTCHUNKS_RESPONSE = _descriptor.Descriptor(
@@ -374,8 +388,8 @@ _CCONTENTBUILDER_GETMISSINGDEPOTCHUNKS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=841,
-  serialized_end=1051,
+  serialized_start=928,
+  serialized_end=1138,
 )
 
 
@@ -412,8 +426,8 @@ _CCONTENTBUILDER_FINISHDEPOTUPLOAD_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1053,
-  serialized_end=1139,
+  serialized_start=1140,
+  serialized_end=1226,
 )
 
 
@@ -450,8 +464,8 @@ _CCONTENTBUILDER_FINISHDEPOTUPLOAD_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1141,
-  serialized_end=1226,
+  serialized_start=1228,
+  serialized_end=1313,
 )
 
 
@@ -488,8 +502,8 @@ _CCONTENTBUILDER_COMMITAPPBUILD_REQUEST_DEPOTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1401,
-  serialized_end=1446,
+  serialized_start=1488,
+  serialized_end=1533,
 )
 
 _CCONTENTBUILDER_COMMITAPPBUILD_REQUEST = _descriptor.Descriptor(
@@ -539,8 +553,8 @@ _CCONTENTBUILDER_COMMITAPPBUILD_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1229,
-  serialized_end=1446,
+  serialized_start=1316,
+  serialized_end=1533,
 )
 
 
@@ -570,8 +584,8 @@ _CCONTENTBUILDER_COMMITAPPBUILD_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1448,
-  serialized_end=1506,
+  serialized_start=1535,
+  serialized_end=1593,
 )
 
 
@@ -615,8 +629,8 @@ _CCONTENTBUILDER_SIGNINSTALLSCRIPT_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1508,
-  serialized_end=1607,
+  serialized_start=1595,
+  serialized_end=1694,
 )
 
 
@@ -646,8 +660,8 @@ _CCONTENTBUILDER_SIGNINSTALLSCRIPT_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1609,
-  serialized_end=1684,
+  serialized_start=1696,
+  serialized_end=1771,
 )
 
 _CCONTENTBUILDER_GETMISSINGDEPOTCHUNKS_RESPONSE_CHUNKS.containing_type = _CCONTENTBUILDER_GETMISSINGDEPOTCHUNKS_RESPONSE
@@ -777,8 +791,8 @@ _CONTENTBUILDER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=_b('\202\265\030+Interface to build and upload depot content'),
-  serialized_start=1687,
-  serialized_end=2729,
+  serialized_start=1774,
+  serialized_end=2816,
   methods=[
   _descriptor.MethodDescriptor(
     name='InitDepotBuild',
