@@ -429,13 +429,13 @@ class SteamClient(CMClient, BuiltinBase):
 
         return False
 
-    def _pre_login(self):
+    def _pre_login(self, *args, **kwargs):
         if self.logged_on:
             self._LOG.debug("Trying to login while logged on???")
             raise RuntimeError("Already logged on")
 
         if not self.connected and not self._connecting:
-            if not self.connect():
+            if not self.connect(*args, **kwargs):
                 return EResult.Fail
 
         if not self.channel_secured:
@@ -476,7 +476,7 @@ class SteamClient(CMClient, BuiltinBase):
             return self.login(self.username, '', self.login_key)
         return EResult.Fail
 
-    def login(self, username, password='', login_key=None, auth_code=None, two_factor_code=None, login_id=None):
+    def login(self, username, password='', login_key=None, auth_code=None, two_factor_code=None, login_id=None, *args, **kwargs):
         """Login as a specific user
 
         :param username: username
@@ -516,7 +516,7 @@ class SteamClient(CMClient, BuiltinBase):
         """
         self._LOG.debug("Attempting login")
 
-        eresult = self._pre_login()
+        eresult = self._pre_login(*args, **kwargs)
 
         if eresult != EResult.OK:
             return eresult
@@ -566,7 +566,7 @@ class SteamClient(CMClient, BuiltinBase):
 
         return EResult(resp.body.eresult) if resp else EResult.Fail
 
-    def anonymous_login(self):
+    def anonymous_login(self, *args, **kwargs):
         """Login as anonymous user
 
         :return: logon result, see `CMsgClientLogonResponse.eresult <https://github.com/ValvePython/steam/blob/513c68ca081dc9409df932ad86c66100164380a6/protobufs/steammessages_clientserver.proto#L95-L118>`_
@@ -574,7 +574,7 @@ class SteamClient(CMClient, BuiltinBase):
         """
         self._LOG.debug("Attempting Anonymous login")
 
-        eresult = self._pre_login()
+        eresult = self._pre_login(*args, **kwargs)
 
         if eresult != EResult.OK:
             return eresult
