@@ -112,7 +112,7 @@ class WebAuth(object):
                                      timeout=15,
                                      data={
                                          'username': username,
-                                         'donotchache': int(time() * 1000),
+                                         'donotcache': int(time() * 1000),
                                          },
                                      ).json()
         except requests.exceptions.RequestException as e:
@@ -179,11 +179,10 @@ class WebAuth(object):
 
         if password:
             self.password = password
+        elif self.password:
+            password = self.password
         else:
-            if self.password:
-                password = self.password
-            else:
-                raise LoginIncorrect("password is not specified")
+            raise LoginIncorrect("password is not specified")
 
         if not captcha and self.captcha_code:
             captcha = self.captcha_code
@@ -225,6 +224,8 @@ class WebAuth(object):
                 raise EmailCodeRequired(resp['message'])
             elif resp.get('requires_twofactor', False):
                 raise TwoFactorCodeRequired(resp['message'])
+            elif 'too many login failures' in resp.get('message', ''):
+                raise TooManyLoginFailures(resp['message'])
             else:
                 self.password = ''
                 raise LoginIncorrect(resp['message'])
@@ -339,17 +340,15 @@ class MobileWebAuth(WebAuth):
         """
         if oauth_token:
             self.oauth_token = oauth_token
+        elif self.oauth_token:
+            oauth_token = self.oauth_token
         else:
-            if self.oauth_token:
-                oauth_token = self.oauth_token
-            else:
-                raise LoginIncorrect('token is not specified')
+            raise LoginIncorrect('token is not specified')
 
         if steam_id:
             self.steam_id = SteamID(steam_id)
-        else:
-            if not self.steam_id:
-                raise LoginIncorrect('steam_id is not specified')
+        elif not self.steam_id:
+            raise LoginIncorrect('steam_id is not specified')
 
         steam_id = self.steam_id.as_64
 
@@ -406,4 +405,7 @@ class EmailCodeRequired(WebAuthException):
     pass
 
 class TwoFactorCodeRequired(WebAuthException):
+    pass
+
+class TooManyLoginFailures(WebAuthException):
     pass

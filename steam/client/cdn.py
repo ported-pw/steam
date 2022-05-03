@@ -3,9 +3,20 @@ The :class:`.CDNClient` class provides a simple API for downloading Steam conten
 
 Initializing :class:`.CDNClient` requires a logged in :class:`.SteamClient` instance
 
+.. warning::
+    This module uses :mod:`requests` library, which is not gevent cooperative by default.
+    It is high recommended that you use :meth:`steam.monkey.patch_minimal()`.
+    See example below
+
 .. code:: python
+    import steam.monkey
+    steam.monkey.patch_minimal()
+
+    from steam.client import SteamClient, EMsg
+    from steam.client.cdn import CDNClient
 
     mysteam = SteamClient()
+    mysteam.cli_login()
     ...
     mycdn = CDNClient(mysteam)
 
@@ -466,6 +477,12 @@ class CDNClient(object):
 
         self.load_licenses()
 
+    def clear_cache(self):
+        """Cleared cached information. Next call on methods with caching will return fresh data"""
+        self.manifests.clear()
+        self.app_depots.clear()
+        self.beta_passwords.clear()
+
     def load_licenses(self):
         """Read licenses from SteamClient instance, required for determining accessible content"""
         self.licensed_app_ids.clear()
@@ -719,7 +736,9 @@ class CDNClient(object):
                 continue
 
             # if we have no license for the depot, no point trying as we won't get depot_key
-            if decrypt and depot_id not in self.licensed_depot_ids:
+            if (decrypt
+               and depot_id not in self.licensed_depot_ids
+               and depot_id not in self.licensed_app_ids):
                 self._LOG.debug("No license for depot %s (%s). Skipping...",
                                 repr(depot_info['name']),
                                 depot_id,
